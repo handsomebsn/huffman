@@ -120,7 +120,7 @@ int compare(ptrTreenode a,ptrTreenode b){
 
 
 
-class Bytewrite;
+
 class huffmantree
 {
 public:
@@ -226,9 +226,8 @@ return huffcode;
 class Bytewrite
 {
 public:
-    friend class huffmantree;
     Bytewrite();
-    ~Bytewrite(){inout.close();}
+    ~Bytewrite(){inf.close();}
    void insert(char num);
    void print();
    void print(char c);
@@ -237,7 +236,7 @@ public:
 private:
    signed int i;
    char c;
- ifstream inout;
+ ifstream inf;
  ///
  ptrTreenode array[258];
 };
@@ -247,16 +246,16 @@ Bytewrite::Bytewrite(){
     for(int ii=0;ii<258;ii++)
     {array[ii]=NULL;}
 
-inout.open("1.txt",ios::binary);
-if(!inout.is_open())
+inf.open("1.txt",ios::binary);
+if(!inf.is_open())
 {cout<<"open fail";return;}
 c=0x00;
 i=7;
 for(int i=0;i<258;i++)
 array[i]=NULL;
 char tmp;
-   while(!inout.eof()){
-   inout.read(&tmp,sizeof(char));
+   while(!inf.eof()){
+   inf.read(&tmp,sizeof(char));
    cout<<tmp;
    unsigned char tmp1;
    memcpy(&tmp1,&tmp,1);
@@ -291,7 +290,7 @@ c=tmp|c;}
 i--;
 if(i==-1)
    { i=7;
-    //inout.write(&c,sizeof(char));
+    //inf.write(&c,sizeof(char));
    //cout<<c;
     c=0x00;
    }
