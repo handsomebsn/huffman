@@ -227,7 +227,7 @@ class Bytewrite
 {
 public:
     Bytewrite();
-    ~Bytewrite(){inf.close();}
+    ~Bytewrite(){inf.close();outf.close();}
    void insert(char num);
    void print();
    void print(char c);
@@ -237,6 +237,7 @@ private:
    signed int i;
    char c;
  ifstream inf;
+ ofstream outf;
  ///
  ptrTreenode array[258];
 };
@@ -248,6 +249,9 @@ Bytewrite::Bytewrite(){
 
 inf.open("1.txt",ios::binary);
 if(!inf.is_open())
+{cout<<"open fail";return;}
+outf.open("1huf.txt",ios::binary);
+if(!outf.is_open())
 {cout<<"open fail";return;}
 c=0x00;
 i=7;
@@ -290,7 +294,7 @@ c=tmp|c;}
 i--;
 if(i==-1)
    { i=7;
-    //inf.write(&c,sizeof(char));
+    outf.write(&c,sizeof(char));
    //cout<<c;
     c=0x00;
    }
@@ -379,13 +383,28 @@ if(tmp)
 {
 c=abc.getarray()[i]->data;
 huffcode=huff.gethuffcode(tmp);
+//cout<<huffcode.start<<endl;
 charhuffcodemap[c]=huffcode;
+
 //huffcodecharmap[huffcode]=c;
 }
-
 }
 
-print( charhuffcodemap['r']  );
+//cout<<charhuffcodemap['r'].start<<endl;
+ifstream my;
+my.open("1.txt",ios::binary);
+if(!my.is_open())
+    cout<<"openfailed";
+char cc;
+Huffcode huftmp;
+while (!my.eof()) {
+my.read(&cc,sizeof(char));
+huftmp=charhuffcodemap[cc];
+
+for(int i=huftmp.start;i<258;i++)
+abc.insert(huftmp.codes[i]);
+}
+
 
     return 0;
 }
