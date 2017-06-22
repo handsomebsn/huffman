@@ -3,6 +3,7 @@
 #include<cstring>
 #include<ctime>
 #include <fstream>
+#include<map>
 using namespace std;
 template<class Type>
 class Heap{
@@ -99,7 +100,7 @@ typedef struct Treenode{
 typedef struct{
 char codes[258];
 int start;
-}Hufcode,*ptrHufcode;
+}Huffcode,*ptrHuffcode;
 
 
 
@@ -120,19 +121,19 @@ int compare(ptrTreenode a,ptrTreenode b){
 
 
 class Bytewrite;
-class Hufmantree
+class huffmantree
 {
 public:
    Tree gettree(){return this->tree;}
- Hufmantree();
- Hufmantree(const ptrTreenode array[]);
- Hufcode gethufcode(ptrTreenode ptrtreenode);
+ huffmantree();
+ huffmantree(const ptrTreenode array[]);
+ Huffcode gethuffcode(ptrTreenode ptrtreenode);
  void travel(Tree tree);
 private:
 Tree tree;
 };
 
-Hufmantree::Hufmantree(){
+huffmantree::huffmantree(){
 int n;
 char c;
 int weight;
@@ -161,7 +162,7 @@ heap.insert(newnode);
 this->tree=heap.del();
 }
 
-Hufmantree::Hufmantree(const ptrTreenode array[]){
+huffmantree::huffmantree(const ptrTreenode array[]){
 
     Heap<ptrTreenode> heap(258);
     heap.setcompare(compare);
@@ -192,7 +193,7 @@ this->tree=heap.del();
 
 
 
-void Hufmantree::travel(Tree tree){
+void huffmantree::travel(Tree tree){
 if(tree){
 cout<<tree->data<<" "<<tree->weight<<" ";
 travel(tree->left);
@@ -200,24 +201,24 @@ travel(tree->right);
 }
 }
 
-Hufcode Hufmantree::gethufcode(ptrTreenode ptrtreenode){
+Huffcode huffmantree::gethuffcode(ptrTreenode ptrtreenode){
     if(!ptrtreenode)
-    {cout<<"ptrtreenode null when gethufcode";throw "ptrtreenode null when gethufcode";}
- Hufcode hufcode;
-hufcode.start=258;
+    {cout<<"ptrtreenode null when gethuffcode";throw "ptrtreenode null when gethuffcode";}
+ Huffcode huffcode;
+huffcode.start=258;
 ptrTreenode parent,p;
 parent=ptrtreenode->parent;
 p=ptrtreenode;
 while(parent){
 if(parent->left==p)
-     hufcode.codes[--hufcode.start]='0';
+     huffcode.codes[--huffcode.start]='0';
     else if(parent->right==p)
-    hufcode.codes[--hufcode.start]='1';
+    huffcode.codes[--huffcode.start]='1';
      p=parent;
      parent=p->parent;
 
 }
-return hufcode;
+return huffcode;
 }
 
 
@@ -225,7 +226,7 @@ return hufcode;
 class Bytewrite
 {
 public:
-    friend class Hufmantree;
+    friend class huffmantree;
     Bytewrite();
     ~Bytewrite(){inout.close();}
    void insert(char num);
@@ -347,17 +348,20 @@ cout<<" "<<array[i]->weight<<endl;
 
 
 
-void print(Hufcode hufcode){
+void print(Huffcode huffcode){
 
-    for(int i=hufcode.start;i<258;i++)
-    cout<<hufcode.codes[i];
+    for(int i=huffcode.start;i<258;i++)
+    cout<<huffcode.codes[i];
 }
 
 
 
 
+map<char,Huffcode> charhuffcodemap;
+//map<Huffcode,char> huffcodecharmap;
+
 int main(){
- Bytewrite a;
+ Bytewrite abc;
  /*char c;
  while(cin>>c)
  {
@@ -366,8 +370,23 @@ int main(){
 a.insert(c);
  }*/
  //a.showtongji();
-Hufmantree huf(a.getarray());
-Hufcode hufcode= huf.gethufcode(a.getarray()[123]);
-print(hufcode);
+huffmantree huff(abc.getarray());
+ptrTreenode tmp;
+char c;
+Huffcode huffcode;
+for(int i=0;i<258;i++){
+    tmp=abc.getarray()[i];
+if(tmp)
+{
+c=abc.getarray()[i]->data;
+huffcode=huff.gethuffcode(tmp);
+charhuffcodemap[c]=huffcode;
+//huffcodecharmap[huffcode]=c;
+}
+
+}
+
+print( charhuffcodemap['r']  );
+
     return 0;
 }
