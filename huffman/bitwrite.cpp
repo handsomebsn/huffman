@@ -1,7 +1,10 @@
 #include "bitwrite.h"
 
-Bitwrite::Bitwrite(const char *filename)
-{   outf.open(filename,ios::binary);
+Bitwrite::Bitwrite(const char *filename,bool app)
+{   if(app)
+        outf.open(filename,ios::binary|ios::app);
+        else
+    outf.open(filename,ios::binary);
     if(!outf.is_open())
     {cout<<"open fail";return;}
 }

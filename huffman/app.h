@@ -9,6 +9,8 @@ public:
     App();
     void jiami(const char *decname,const char *srcname);
     void jiemi(const char *decname,const char *srcname);
+    map<Ele,Huffcode> elehuffcode;
+    map<Huffcode,Ele> huffcodeele;
 };
 
 #endif // APP_H

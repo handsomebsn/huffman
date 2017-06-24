@@ -10,7 +10,7 @@ class Bitwrite
     char c;
     int i;
 public:
-    Bitwrite(const char *filename);
+    Bitwrite(const char *filename, bool app=true);
 
     void insert(char bit);
     void close();

@@ -8,12 +8,14 @@ class Tongji
 {private:
     ifstream inf;
     ptrTongjicell tongjis[NUMCOUNT];
+    int n;
 public:
     Tongji(const char *filename);
     ~Tongji();
     void close();
     void print();
     ptrTongjicell* gettongji();
+    int count(){return n;}
 
 };
 

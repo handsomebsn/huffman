@@ -1,6 +1,7 @@
 ﻿#include "tongji.h"
 #include<string.h>
 Tongji::Tongji(const char *filename){
+    n=0;
     inf.open(filename,ios::binary);
     if(!inf.is_open())
     {cout<<"open failed in Tongji construct";throw "open failed in Tongji construct";}
@@ -16,7 +17,8 @@ Tongji::Tongji(const char *filename){
               tongjis[tmp1]=new Tongjicell;
               tongjis[tmp1]->weight=1;
               tongjis[tmp1]->data=tmp;
-              //tongjis[tmp1]->parent=NULL;
+             // tongjis[tmp1]->parent=NULL;
+              n++;
            }else{
             tongjis[tmp1]->weight++;
 
