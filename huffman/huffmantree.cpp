@@ -76,6 +76,8 @@ travel(tree->right);
 
 Huffcode Huffmantree::gethuffcode(Ele c){
     ptrTreenode ptrtreenode=NULL;
+    if(yezis.count(c)==0)
+    {cout<<"key not in map when gethuffcode";throw "key not in map when gethuffcode";}
     ptrtreenode=yezis[c];
     if(!ptrtreenode)
     {cout<<"ptrtreenode null when gethuffcode";throw "ptrtreenode null when gethuffcode";}

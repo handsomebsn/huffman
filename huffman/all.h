@@ -9,7 +9,7 @@ typedef int Weight;
 typedef struct{
 Ele data;
 Weight weight;
-}Huffcell,Tongjicell,*ptrTongjicell;
+}Tongjicell,*ptrTongjicell;
 typedef struct Treenode{
  Ele data;
  int weight;
