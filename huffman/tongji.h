@@ -10,7 +10,10 @@ class Tongji
     ptrTongjicell tongjis[NUMCOUNT];
 public:
     Tongji(const char *filename);
+    ~Tongji();
     void close();
+    void print();
+    ptrTongjicell* gettongji();
 
 };
 
