@@ -14,6 +14,21 @@ void printbit(char c){
 
 }
 
+string charbit(char c){
+    int tmp=0x80;
+    string haha;
+    for(int j=0;j<8;j++)
+    {
+    if(c&tmp)
+     haha.append("1");
+    else
+      haha.append("0");
+    tmp=tmp>>1;
+    }
+    return haha;
+}
+
+
 
 int compare(ptrTreenode a,ptrTreenode b){
 

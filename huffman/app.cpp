@@ -76,8 +76,31 @@ void App::jiemi(const char *decname, const char *srcname){
      Huffmantree huff(tongjis,n);
      for(int i=0;i<n;i++)
         huffcodeele[huff.gethuffcode(tongjis[i].data)]=tongjis[i].data;
+     char c;
+     ofstream outf;
+     outf.open(decname,ios::binary);
+    if(!outf.is_open())
+     throw "open fail in app::jiami 2";
+     while(!inf.eof()){
+       inf.read(&c,sizeof(char));
+       string tmp=charbit(c);
+        for(int i=0;i<tmp.size();i++)
+            jiemi(tmp.at(i),outf);
+     }
 
+inf.close();
+outf.close();
 
+}
+void App::jiemi(char bit,ofstream &outf){
 
+if(huffcodeele.count(huffcode)!=0)
+{
+outf.write(&huffcodeele[huffcode],sizeof(Ele));
+huffcode.clear();
+
+}
+
+huffcode.append(&bit,sizeof(bit));
 
 }

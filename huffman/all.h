@@ -21,6 +21,7 @@ typedef struct Treenode{
 typedef string Huffcode,*ptrHuffcode;
 
 void printbit(char c);
+string charbit(char c);
 int compare(ptrTreenode a,ptrTreenode b);
 int compare(int a,int b);
 #endif // ALL_H
