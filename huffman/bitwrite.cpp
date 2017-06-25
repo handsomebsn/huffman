@@ -7,6 +7,7 @@ Bitwrite::Bitwrite(const char *filename,bool app)
     outf.open(filename,ios::binary);
     if(!outf.is_open())
     {cout<<"open fail";return;}
+    i=7;
 }
 
 void Bitwrite::insert(char bit){
