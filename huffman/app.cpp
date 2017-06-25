@@ -1,5 +1,5 @@
 #include "app.h"
-
+#include<cstring>
 App::App()
 {
 
@@ -58,8 +58,24 @@ bitwrite.close();
 }
 
 void App::jiemi(const char *decname, const char *srcname){
-
-
+    ifstream inf;
+    inf.open(srcname,ios::binary);
+    if(!inf.is_open())
+    throw "open fail in app::jiami 1";
+    char qianming[10];
+     inf.read(qianming,sizeof("phoenix"));
+     //cout<<qianming;
+     if(strcmp(qianming,"phoenix")!=0)
+     {cout<<"not jiemi file"; return; }
+     int n;
+     inf.read((char*)&n,sizeof(n));
+     Tongjicell tongjis[NUMCOUNT];
+     for(int i=0;i<n;i++){
+       inf.read((char*)&tongjis[i],sizeof(Tongjicell));
+     }
+     Huffmantree huff(tongjis,n);
+     for(int i=0;i<n;i++)
+        huffcodeele[huff.gethuffcode(tongjis[i].data)]=tongjis[i].data;
 
 
 
