@@ -40,3 +40,13 @@ int compare(int a, int b){
 
     return a-b;
 }
+long getfilesize(const char *filename){
+
+      ifstream in(filename);
+      if(!in.is_open())
+          throw "open failed";
+      in.seekg(0,ios::end);
+      long size = in.tellg();
+      in.close();
+      return size;
+}

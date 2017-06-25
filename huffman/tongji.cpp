@@ -8,7 +8,7 @@ Tongji::Tongji(const char *filename){
     for(int i=0;i<NUMCOUNT;i++)
     tongjis[i]=NULL;
     char tmp;
-       while(!inf.eof()){
+       while(inf.peek()!=EOF){
        inf.read(&tmp,sizeof(char));
        cout<<tmp;
        unsigned char tmp1;

@@ -3,6 +3,7 @@
 #define NUMCOUNT 256
 #include<iostream>
 #include<string>
+#include<fstream>
 using namespace std;
 typedef char Ele;
 typedef int Weight;
@@ -24,4 +25,5 @@ void printbit(char c);
 string charbit(char c);
 int compare(ptrTreenode a,ptrTreenode b);
 int compare(int a,int b);
+long getfilesize(const char *filename);
 #endif // ALL_H

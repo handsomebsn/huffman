@@ -32,3 +32,14 @@ void Bitwrite::close(){
 
     outf.close();
 }
+
+int Bitwrite::pushfull(){
+int num=0;
+if(i==7)
+    num=0;
+else
+    num=i+1;
+for(int i=0;i<num;i++)
+insert('0');
+return num;
+}

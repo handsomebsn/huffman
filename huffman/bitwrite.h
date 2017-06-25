@@ -14,6 +14,7 @@ public:
 
     void insert(char bit);
     void close();
+    int pushfull();
 
 };
 
