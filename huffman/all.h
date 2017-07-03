@@ -1,6 +1,7 @@
 #ifndef ALL_H
 #define ALL_H
 #define NUMCOUNT 256
+#define BUFFNUM 4096
 #include<iostream>
 #include<string>
 #include<fstream>

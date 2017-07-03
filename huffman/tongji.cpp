@@ -8,16 +8,20 @@ Tongji::Tongji(const char *filename){
     {cout<<"open failed in Tongji construct";throw "open failed in Tongji construct";}
     for(int i=0;i<NUMCOUNT;i++)
     tongjis[i]=NULL;
-    char tmp;
+    char tmp[BUFFNUM];
+    int readnum;
+    unsigned char tmp1;
        while(inf.peek()!=EOF){
-       inf.read(&tmp,sizeof(char));
+       inf.read(tmp,sizeof(tmp));
        //cout<<tmp;
-       unsigned char tmp1;
-       memcpy(&tmp1,&tmp,1);
-           if(!tongjis[tmp1]){
+       readnum=inf.gcount();
+       cout<<readnum<<endl;
+        for(int i=0;i<readnum;i++){
+            memcpy(&tmp1,&tmp[i],1);
+            if(!tongjis[tmp1]){
               tongjis[tmp1]=new Tongjicell;
               tongjis[tmp1]->weight=1;
-              tongjis[tmp1]->data=tmp;
+              tongjis[tmp1]->data=tmp[i];
              // tongjis[tmp1]->parent=NULL;
               n++;
            }else{
@@ -27,6 +31,8 @@ Tongji::Tongji(const char *filename){
 
 
       }
+
+     }
 
    double endtime=clock();
    cout<<"tongji time:"<<(endtime-starttime)/CLOCKS_PER_SEC<<endl;
