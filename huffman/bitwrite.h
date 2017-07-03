@@ -3,12 +3,15 @@
 
 #include<fstream>
 #include<iostream>
+#include"all.h"
 using namespace std;
 class Bitwrite
 {private:
     ofstream outf;
     char c;
     int i;
+    char buff[BUFFNUM];
+    int bufi;
 public:
     Bitwrite(const char *filename, bool app=true);
 
