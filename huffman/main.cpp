@@ -2,6 +2,7 @@
 #include<cstring>
 int main(int argc, char *argv[])
 {
+
 App a;
 if(argc!=4)
 {    cout<<"argv num is wrong use jia or jie ./huff jia dec src\n";return 1;}

@@ -5,6 +5,7 @@ App::App()
 
 }
 void App::jiami(const char *decname, const char *srcname){
+    double starttime=clock();
 Tongji tongji(srcname);
 //tongji.print();
 //cout<<tongji.count();
@@ -62,6 +63,9 @@ bitwrite.insert(huffcode.at(i));
 bitwrite.pushfull();
 bitwrite.close();
 //cout<<n<<endl;
+double endtime=clock();
+cout<<"jia time:"<<(endtime-starttime)/CLOCKS_PER_SEC<<endl;
+
 }
 
 void App::jiemi(const char *decname, const char *srcname){

@@ -1,6 +1,7 @@
 ﻿#include "tongji.h"
 #include<string.h>
 Tongji::Tongji(const char *filename){
+    double starttime=clock();
     n=0;
     inf.open(filename,ios::binary);
     if(!inf.is_open())
@@ -10,7 +11,7 @@ Tongji::Tongji(const char *filename){
     char tmp;
        while(inf.peek()!=EOF){
        inf.read(&tmp,sizeof(char));
-       cout<<tmp;
+       //cout<<tmp;
        unsigned char tmp1;
        memcpy(&tmp1,&tmp,1);
            if(!tongjis[tmp1]){
@@ -27,7 +28,8 @@ Tongji::Tongji(const char *filename){
 
       }
 
-
+   double endtime=clock();
+   cout<<"tongji time:"<<(endtime-starttime)/CLOCKS_PER_SEC<<endl;
 }
 
 

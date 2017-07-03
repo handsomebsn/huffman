@@ -30,7 +30,7 @@ this->tree=heap.del();
 }
 
 Huffmantree::Huffmantree(const Tongjicell tongjis[],int n){
-
+double starttime=clock();
     Heap<ptrTreenode> heap(NUMCOUNT);
     heap.setcompare(compare);
 
@@ -58,7 +58,8 @@ newnode->weight=left->weight+right->weight;
 heap.insert(newnode);
 }
 this->tree=heap.del();
-
+double endtime=clock();
+cout<<"hufftree time:"<<(endtime-starttime)/CLOCKS_PER_SEC<<endl;
 
 }
 
