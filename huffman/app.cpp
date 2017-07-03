@@ -46,19 +46,25 @@ for(int i=0;i<n;i++)
     outf.write((char*)&tongjis[i],sizeof(Tongjicell));
 outf.close();
 Bitwrite bitwrite(decname);
+//
 ifstream inf;
 inf.open(srcname,ios::binary);
 if(!inf.is_open())
 throw "open fail in app::jiami 1";
-char c;
+char buff[BUFFNUM];
+int readum;
 Huffcode huffcode;
 while(inf.peek()!=EOF)
 {
-inf.read(&c,sizeof(char));
-huffcode=elehuffcode[c];
-//cout<<huffcode<<endl;
-for(int i=0;i<huffcode.size();i++)
-bitwrite.insert(huffcode.at(i));
+     inf.read(buff,sizeof(buff));
+     readum=inf.gcount();
+     //
+     for(int ii=0;ii<readum;ii++){
+     huffcode=elehuffcode[buff[ii]];
+     //cout<<huffcode<<endl;
+     for(int i=0;i<huffcode.size();i++)
+     bitwrite.insert(huffcode.at(i));
+     }
 }
 bitwrite.pushfull();
 bitwrite.close();
