@@ -15,7 +15,7 @@ Tongji::Tongji(const char *filename){
        inf.read(tmp,sizeof(tmp));
        //cout<<tmp;
        readnum=inf.gcount();
-       cout<<readnum<<endl;
+       //cout<<readnum<<endl;
         for(int i=0;i<readnum;i++){
             memcpy(&tmp1,&tmp[i],1);
             if(!tongjis[tmp1]){

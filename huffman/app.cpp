@@ -22,14 +22,13 @@ for(int i=0,j=0;i<NUMCOUNT;i++)
 
 tongji.close();
 Huffmantree huff(tongjis,n);
-for(int i=0;i<n;i++)
-//{cout<<tongjis[i].data<<" ";
-//printbit(tongjis[i].data);
-//cout<<endl;
-    elehuffcode[tongjis[i].data]=huff.gethuffcode(tongjis[i].data);//}
+for(int i=0;i<n;i++){
+    memcpy(&xiabiao,&tongjis[i].data,1);
+    elehuffcode[xiabiao]=huff.gethuffcode(tongjis[i].data);}
 //bitsum
 for(int i=0;i<n;i++){
-bitsum=bitsum+elehuffcode[tongjis[i].data].size()*tongjis[i].weight;
+    memcpy(&xiabiao,&tongjis[i].data,1);
+bitsum=bitsum+elehuffcode[xiabiao].size()*tongjis[i].weight;
 }
 mod=bitsum%8;
 //cout<<endl<<bitsum%8<<endl;
@@ -60,7 +59,8 @@ while(inf.peek()!=EOF)
      readum=inf.gcount();
      //
      for(int ii=0;ii<readum;ii++){
-     huffcode=elehuffcode[buff[ii]];
+         memcpy(&xiabiao,&buff[ii],1);
+     huffcode=elehuffcode[xiabiao];
      //cout<<huffcode<<endl;
      for(int i=0;i<huffcode.size();i++)
      bitwrite.insert(huffcode.at(i));
